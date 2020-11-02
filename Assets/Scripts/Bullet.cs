@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] int damage;
     [SerializeField] LayerMask collisionMask;
 
     private void Update()
@@ -14,7 +15,14 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(collisionMask.Includes(other.gameObject.layer))
+        if (collisionMask.Includes(other.gameObject.layer))
+        {
+            var damageable = other.GetComponent<IDamageable>();
+            
+            if(damageable != null)
+                damageable.TakeDamage(damage);
+
             Destroy(gameObject);
+        }
     }
 }
