@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4907798939142571845}
   - component: {fileID: 7501580183141165252}
   - component: {fileID: 9184749612791463138}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -65,17 +65,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MoveSpeed: 5
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  projectile: {fileID: 5740309259675716837, guid: b3eb63765ecac664e9e83cd7e3431d7e,
+    type: 3}
+  cooldown: 0.5
 --- !u!114 &9184749612791463138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +110,7 @@ GameObject:
   - component: {fileID: 4738421919834381363}
   - component: {fileID: 3129542198964361071}
   - component: {fileID: 3430788766925199808}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

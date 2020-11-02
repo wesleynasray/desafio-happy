@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1475111041380438639}
   - component: {fileID: 9139134056238569779}
   - component: {fileID: 8801854706103211932}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 5869360012967773064}
   - component: {fileID: 1271955929079351577}
   - component: {fileID: -7874057583272022783}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
