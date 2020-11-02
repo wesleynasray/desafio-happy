@@ -7,10 +7,14 @@ using UnityEngine.InputSystem.OnScreen;
 
 public class CustomScreenStick : OnScreenStick, IPointerDownHandler, IPointerUpHandler
 {
+    [Header("Custom")]
+    [SerializeField] GameObject controlParent;
+    
     PlayerInput playerInput;
 
     private void Awake()
     {
+        controlParent.SetActive(Application.isMobilePlatform);
         playerInput = FindObjectOfType<PlayerInput>();
     }
 

@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MovementRange: 75
   m_ControlPath: <Gamepad>/leftStick
+  controlParent: {fileID: 1939564527871844399}
 --- !u!1 &5949187972109757974
 GameObject:
   m_ObjectHideFlags: 0
