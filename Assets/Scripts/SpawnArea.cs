@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnArea : MonoBehaviour
 {
+    public static event Action<SpawnArea> OnSpawnStart;
+    public static event Action<SpawnArea, int> OnSpawnedRemoved;
+
     [SerializeField] Vector3 extent = Vector3.one * 5;
     [SerializeField] GameObject toSpawn;
     [SerializeField] float startDelay;
@@ -11,15 +16,29 @@ public class SpawnArea : MonoBehaviour
     [SerializeField] float spawnCooldown;
     [SerializeField] int burstLimit;
 
-    [SerializeField] List<GameObject> spawnedList = new List<GameObject>();
+    List<GameObject> spawnedList = new List<GameObject>();
+
+    public int TotalSpawns { get => totalSpawns; }
 
     private IEnumerator Start()
     {
+        // Start Event and Delay
+        OnSpawnStart?.Invoke(this);
         yield return new WaitForSeconds(startDelay);
-        
-        var cooldown = new WaitForSeconds(spawnCooldown);
-        var waitCountZero = new WaitUntil(() => { spawnedList.RemoveAll(s => s == null); return spawnedList.Count == 0; });
 
+        // Delays Setup
+        var cooldown = new WaitForSeconds(spawnCooldown);
+        
+        var waitCountZero = new WaitUntil(() => { 
+            var removeCount = spawnedList.RemoveAll(s => s == null);
+            
+            if(removeCount > 0)
+                OnSpawnedRemoved?.Invoke(this, removeCount);
+
+            return spawnedList.Count == 0; 
+        });
+
+        // Spawning process
         for(int spawns = 0; spawns < totalSpawns; spawns++)
         {
             var spawned = Instantiate(toSpawn, transform);
