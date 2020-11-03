@@ -28,7 +28,9 @@ public class Player : MonoBehaviour
     {
         Move();
         TargetClosestEnemy();
-        Shoot();
+        
+        if(m_MoveInput.sqrMagnitude == 0)
+            Shoot();
     }
 
     private void Move()
