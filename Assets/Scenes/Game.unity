@@ -482,10 +482,9 @@ MonoBehaviour:
   extent: {x: 10, y: 0, z: 12}
   toSpawn: {fileID: 8907772880959403997, guid: aa24e7374800fc342a9f727709ece943, type: 3}
   startDelay: 1
-  totalSpawns: 20
+  totalSpawns: 5
   spawnCooldown: 0.2
   burstLimit: 5
-  spawnedList: []
 --- !u!4 &972005885
 Transform:
   m_ObjectHideFlags: 0
@@ -627,6 +626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1692342236}
+  - component: {fileID: 1692342237}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -652,6 +652,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1692342237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692342235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfde091b7a52e2e44a11bebfd015a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnArea: {fileID: 972005884}
 --- !u!224 &2043619789 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6050042099495367618, guid: 4375b44059f579a45b28753b297a87f9,

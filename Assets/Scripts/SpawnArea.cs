@@ -8,6 +8,7 @@ public class SpawnArea : MonoBehaviour
 {
     public static event Action<SpawnArea> OnSpawnStart;
     public static event Action<SpawnArea, int> OnSpawnedRemoved;
+    public static event Action<SpawnArea> OnSpawnFinish;
 
     [SerializeField] Vector3 extent = Vector3.one * 5;
     [SerializeField] GameObject toSpawn;
@@ -20,7 +21,16 @@ public class SpawnArea : MonoBehaviour
 
     public int TotalSpawns { get => totalSpawns; }
 
-    private IEnumerator Start()
+    public void StartSpawn(float startDelay, int totalSpawns, float spawnCooldown, int burstLimit)
+    {
+        this.startDelay = startDelay;
+        this.totalSpawns = totalSpawns;
+        this.spawnCooldown = spawnCooldown;
+        this.burstLimit = burstLimit;
+
+        StartCoroutine(SpawnRoutine());
+    }
+    private IEnumerator SpawnRoutine()
     {
         // Start Event and Delay
         OnSpawnStart?.Invoke(this);
@@ -55,6 +65,10 @@ public class SpawnArea : MonoBehaviour
 
             yield return cooldown;
         }
+
+        // Finish Event
+        yield return waitCountZero;
+        OnSpawnFinish?.Invoke(this);
     }
 
     private void OnDrawGizmosSelected()
