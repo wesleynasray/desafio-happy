@@ -566,10 +566,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9f0b0ae30360f4ab12c2063791858d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extent: {x: 10, y: 0, z: 14}
+  extent: {x: 10, y: 0, z: 12}
   toSpawn: {fileID: 8907772880959403997, guid: aa24e7374800fc342a9f727709ece943, type: 3}
-  cooldown: 2
-  intialDelay: 1
+  startDelay: 1
+  totalSpawns: 20
+  spawnCooldown: 0.2
+  burstLimit: 5
+  spawnedList: []
 --- !u!4 &972005885
 Transform:
   m_ObjectHideFlags: 0
@@ -1305,7 +1308,7 @@ PrefabInstance:
     - target: {fileID: 346429561917427156, guid: 8f82e8073a2a2fd479e9405ad6ad1edd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8
+      value: -7.07
       objectReference: {fileID: 0}
     - target: {fileID: 346429561917427156, guid: 8f82e8073a2a2fd479e9405ad6ad1edd,
         type: 3}

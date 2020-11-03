@@ -6,24 +6,35 @@ public class SpawnArea : MonoBehaviour
 {
     [SerializeField] Vector3 extent = Vector3.one * 5;
     [SerializeField] GameObject toSpawn;
-    [SerializeField] float cooldown;
-    [SerializeField] float intialDelay;
+    [SerializeField] float startDelay;
+    [SerializeField] int totalSpawns;
+    [SerializeField] float spawnCooldown;
+    [SerializeField] int burstLimit;
+
+    [SerializeField] List<GameObject> spawnedList = new List<GameObject>();
 
     private IEnumerator Start()
     {
-        yield return new WaitForSeconds(intialDelay);
-        var wait = new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(startDelay);
+        
+        var cooldown = new WaitForSeconds(spawnCooldown);
+        var waitCountZero = new WaitUntil(() => { spawnedList.RemoveAll(s => s == null); return spawnedList.Count == 0; });
 
-        while (enabled)
+        for(int spawns = 0; spawns < totalSpawns; spawns++)
         {
-            var spawn = Instantiate(toSpawn, transform);
-            spawn.transform.position = new Vector3
+            var spawned = Instantiate(toSpawn, transform);
+            spawned.transform.position = new Vector3
             {
                 x = transform.position.x + Random.Range(-extent.x, extent.x) * .5f,
                 y = transform.position.y + Random.Range(-extent.y, extent.y) * .5f,
                 z = transform.position.z + Random.Range(-extent.z, extent.z) * .5f
             };
-            yield return wait;
+            spawnedList.Add(spawned);
+
+            if(spawnedList.Count >= burstLimit)
+                yield return waitCountZero;
+
+            yield return cooldown;
         }
     }
 
