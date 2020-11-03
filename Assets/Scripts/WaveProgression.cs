@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveProgression : MonoBehaviour
 {
     [SerializeField] SpawnArea spawnArea;
+    [SerializeField] Text waveCounter;
 
     int wave;
 
@@ -35,6 +37,7 @@ public class WaveProgression : MonoBehaviour
         if(spawnArea == this.spawnArea)
         {
             wave++;
+            waveCounter.text = string.Format("Wave {0}", wave);
             spawnArea.StartSpawn(StartDelay, TotalSpawns, SpawnCooldown, BurstLimit);
         }
     }

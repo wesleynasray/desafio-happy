@@ -348,6 +348,18 @@ Transform:
   m_Father: {fileID: 1560712949}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 68.380005, y: -206.39, z: -95.437004}
+--- !u!114 &813954522 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6050042100456140757, guid: 4375b44059f579a45b28753b297a87f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6050042100179491343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnArea: {fileID: 972005884}
+  waveCounter: {fileID: 813954522}
 --- !u!224 &2043619789 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6050042099495367618, guid: 4375b44059f579a45b28753b297a87f9,
