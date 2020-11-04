@@ -17,14 +17,4 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable() => Enemies.Add(this);
     private void OnDisable() => Enemies.Remove(this);
-
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if(hit.gameObject.tag == "Player")
-        {
-            Damageable damageable;
-            if(hit.gameObject.TryGetComponent(out damageable))
-                damageable.TakeDamage(1);
-        }
-    }
 }
