@@ -6,6 +6,7 @@ public class Damager : MonoBehaviour
 {
     [SerializeField] int damage;
     [SerializeField] LayerMask damageableMask;
+    [SerializeField] bool destroyOnHit;
 
     private void OnTriggerEnter(Collider other) => DoDamage(other.gameObject);
     private void OnCollisionEnter(Collision collision) => DoDamage(collision.gameObject);
@@ -17,6 +18,9 @@ public class Damager : MonoBehaviour
             Damageable damageable;
             if (target.TryGetComponent(out damageable))
                 damageable.TakeDamage(damage);
+
+            if (destroyOnHit)
+                Destroy(gameObject);
         }
     }
 }

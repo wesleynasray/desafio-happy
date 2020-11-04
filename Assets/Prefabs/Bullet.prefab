@@ -156,10 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  damage: 1
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 513
 --- !u!114 &-589784768451381038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,3 +172,4 @@ MonoBehaviour:
   damageableMask:
     serializedVersion: 2
     m_Bits: 513
+  destroyOnHit: 1
