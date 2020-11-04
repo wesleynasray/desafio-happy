@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -26,6 +27,10 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         m_Controller = GetComponent<CharacterController>();
+
+        Damageable damageable;
+        if (TryGetComponent(out damageable))
+            damageable.OnDeath += () => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Update()
