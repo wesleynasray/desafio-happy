@@ -35,10 +35,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Move();
         TargetClosestEnemy();
-        
-        if(m_MoveInput.sqrMagnitude == 0)
+     
+        if(m_MoveInput.sqrMagnitude != 0)
+            Move();
+        else
             Shoot();
     }
 
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
     private void Move()
     {
         m_Controller.Move(m_MoveInput.normalized * m_MoveSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.LookRotation(m_MoveInput.normalized);
     }
 
     private void TargetClosestEnemy()
@@ -79,6 +81,8 @@ public class Player : MonoBehaviour
 
         if(Time.time > shootTime)
         {
+            transform.LookAt(target);
+
             foreach (var power in powerUps)
                 power.Action(gameObject);
 
