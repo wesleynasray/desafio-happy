@@ -31,4 +31,12 @@ public class Enemy : MonoBehaviour, IDamageable
 
         return life;
     }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        var damageable = hit.gameObject.GetComponent<IDamageable>();
+        
+        if (damageable != null) 
+            damageable.TakeDamage(1);
+    }
 }

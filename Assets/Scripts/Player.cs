@@ -4,18 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     [Header("Movement")]
     [SerializeField] float m_MoveSpeed = 5;
     
+    CharacterController m_Controller;
+    Vector3 m_MoveInput;
+    
+    [Header("Damageable")]
+    [SerializeField] int life = 100;
+    [SerializeField] float damageCooldown = 1;
+
+    float damageTime;
+
     [Header("Shooting")]
     [SerializeField] GameObject projectile;
     [SerializeField] float cooldown;
-
-    CharacterController m_Controller;
-    Vector3 m_MoveInput;
-
+    
     Transform target;
     float shootTime;
 
@@ -74,5 +80,15 @@ public class Player : MonoBehaviour
         Vector2 vector = value.Get<Vector2>();
         m_MoveInput.x = vector.x;
         m_MoveInput.z = vector.y;
+    }
+
+    public int TakeDamage(int damage)
+    {
+        if (Time.time > damageTime)
+        {
+            life -= damage;
+            damageTime = Time.time + damageCooldown;
+        }
+        return life;
     }
 }
