@@ -21,7 +21,7 @@ public class WaveProgression : MonoBehaviour
     private void OnDisable() => PowerUpOption.OnClicked -= PowerUpOption_OnClicked;
     #endregion
 
-    private void Start()
+    public void StartProgression()
     {
         PowerUpOption_OnClicked(null);
     }

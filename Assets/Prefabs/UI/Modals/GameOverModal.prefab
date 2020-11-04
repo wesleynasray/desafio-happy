@@ -840,7 +840,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play Again
+  m_Text: Submit
 --- !u!1 &8916161050176135752
 GameObject:
   m_ObjectHideFlags: 0

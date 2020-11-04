@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleJSON;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,11 @@ public class Network : MonoBehaviour
 
     const string url = "https://desafio-happy.firebaseio.com/scores.json";
 
+    [Serializable]
+    public class ScoreList
+    {
+        public Dictionary<string, ScoreEntry> scores = new Dictionary<string, ScoreEntry> { };
+    }
     [Serializable]
     public class ScoreEntry
     {
@@ -59,6 +65,42 @@ public class Network : MonoBehaviour
             {
                 Debug.Log("Received: " + www.downloadHandler.text);
             }
+        }
+    }
+
+    public static void GetScores(Action<ScoreEntry[]> callback)
+    {
+        Instance.StartCoroutine(GetScoresRoutine(callback));
+    }
+    private static IEnumerator GetScoresRoutine(Action<ScoreEntry[]> callback)
+    {
+        using (var www = new UnityWebRequest())
+        {
+            www.url = url;
+            www.method = "GET";
+            www.downloadHandler = new DownloadHandlerBuffer();
+
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Received: " + www.downloadHandler.text);
+            }
+
+            var json = JSON.Parse(www.downloadHandler.text);
+            List<ScoreEntry> scores = new List<ScoreEntry>();
+            
+            foreach (var item in json)
+            {
+                var entry = JsonUtility.FromJson<ScoreEntry>(item.Value);
+                scores.Add(new ScoreEntry { name = item.Value["name"], score = item.Value["score"] });
+            }
+
+            callback?.Invoke(scores.ToArray());
         }
     }
 }
