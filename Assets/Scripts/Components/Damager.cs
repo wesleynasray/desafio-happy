@@ -10,6 +10,7 @@ public class Damager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) => DoDamage(other.gameObject);
     private void OnCollisionEnter(Collision collision) => DoDamage(collision.gameObject);
+    private void OnControllerColliderHit(ControllerColliderHit hit) => DoDamage(hit.gameObject);
 
     private void DoDamage(GameObject target)
     {
