@@ -6,7 +6,7 @@ using UnityEngine;
 public class BulletPowerUp : PowerUpBase
 {
     [Header("Bullet")]
-    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] GameObject defaultBullet;
     [SerializeField] BulletSetup[] bulletSetups;
 
     [System.Serializable]
@@ -18,11 +18,16 @@ public class BulletPowerUp : PowerUpBase
 
     public override void Action(GameObject caller)
     {
-        foreach(var setup in bulletSetups)
+        Action(caller, defaultBullet);
+    }
+
+    public void Action(GameObject caller, GameObject bulletPrefab)
+    {
+        foreach (var setup in bulletSetups)
         {
             Instantiate(
                 bulletPrefab,
-                caller.transform.position + caller.transform.TransformDirection(setup.offset), 
+                caller.transform.position + caller.transform.TransformDirection(setup.offset),
                 Quaternion.LookRotation(caller.transform.TransformDirection(setup.direction.normalized))
             );
         }
