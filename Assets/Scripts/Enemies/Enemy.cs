@@ -10,6 +10,16 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField] int life = 1;
 
+    protected CharacterController controller;
+
+    protected virtual void Awake()
+    {
+        controller = GetComponent<CharacterController>();
+    }
+
+    private void OnEnable() => Enemies.Add(this);
+    private void OnDisable() => Enemies.Remove(this);
+
     public int TakeDamage(int damage)
     {
         life = Mathf.Max(0, life - damage);
@@ -20,15 +30,5 @@ public class Enemy : MonoBehaviour, IDamageable
         OnEnemyDamaged?.Invoke(this);
 
         return life;
-    }
-
-    private void OnEnable()
-    {
-        Enemies.Add(this);
-    }
-
-    private void OnDisable()
-    {
-        Enemies.Remove(this);
     }
 }
