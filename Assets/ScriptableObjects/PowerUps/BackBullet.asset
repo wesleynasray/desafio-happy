@@ -17,5 +17,5 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5740309259675716837, guid: b3eb63765ecac664e9e83cd7e3431d7e,
     type: 3}
   bulletSetups:
-  - direction: {x: 0, y: 0, z: 1}
+  - direction: {x: 0, y: 0, z: -1}
     offset: {x: 0, y: 0, z: 0}

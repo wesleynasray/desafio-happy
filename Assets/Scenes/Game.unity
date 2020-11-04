@@ -1877,7 +1877,7 @@ PrefabInstance:
     - target: {fileID: -2977402226138412187, guid: 8f82e8073a2a2fd479e9405ad6ad1edd,
         type: 3}
       propertyPath: m_life
-      value: 10
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 346429561917427156, guid: 8f82e8073a2a2fd479e9405ad6ad1edd,
         type: 3}
@@ -1968,11 +1968,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7501580183141165252, guid: 8f82e8073a2a2fd479e9405ad6ad1edd,
-        type: 3}
-      propertyPath: cooldown
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f82e8073a2a2fd479e9405ad6ad1edd, type: 3}

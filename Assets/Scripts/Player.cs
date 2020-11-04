@@ -17,11 +17,16 @@ public class Player : MonoBehaviour
 
     #region Shooting
     [Header("Shooting")]
-    [SerializeField] GameObject projectile;
     [SerializeField] float cooldown;
     
     Transform target;
     float shootTime;
+    #endregion
+
+    #region PowerUps
+    [Header("Powers")]
+    [SerializeField] List<PowerUpBase> powerUps = new List<PowerUpBase>();
+    public void AddPowerUp(PowerUpBase powerUp) => powerUps.Add(powerUp);
     #endregion
 
     private void Awake()
@@ -75,9 +80,10 @@ public class Player : MonoBehaviour
 
         if(Time.time > shootTime)
         {
-            var direction = Quaternion.LookRotation(target.position - transform.position);
-            Instantiate(projectile, transform.position, direction);
+            foreach (var power in powerUps)
+                power.Action(gameObject);
+
             shootTime = Time.time + cooldown;
         }
-    }
+    }    
 }

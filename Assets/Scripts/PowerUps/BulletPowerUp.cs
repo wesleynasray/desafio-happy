@@ -23,7 +23,7 @@ public class BulletPowerUp : PowerUpBase
             Instantiate(
                 bulletPrefab,
                 caller.transform.position + setup.offset, 
-                Quaternion.Euler(caller.transform.TransformDirection(setup.direction.normalized))
+                Quaternion.LookRotation(caller.transform.TransformDirection(setup.direction.normalized))
             );
         }
     }
