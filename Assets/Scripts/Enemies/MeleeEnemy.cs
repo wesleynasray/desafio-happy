@@ -18,7 +18,7 @@ public class MeleeEnemy : Enemy
 
     private void Update()
     {
-        if (Time.time < startMoveDelay)
+        if (Time.time < startMoveDelay || target == null)
             return;
 
         var direction = (target.position - transform.position).normalized;
