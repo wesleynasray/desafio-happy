@@ -607,7 +607,6 @@ MonoBehaviour:
   content: {fileID: 6331765931425146727}
   nameField: {fileID: 35192020166226258}
   scoreCounter: {fileID: 2731271668975040156}
-  network: {fileID: 0}
 --- !u!1 &7277966738517147260
 GameObject:
   m_ObjectHideFlags: 0
