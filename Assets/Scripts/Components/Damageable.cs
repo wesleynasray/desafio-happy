@@ -25,7 +25,8 @@ public class Damageable : MonoBehaviour
             m_life = Mathf.Max(0, m_life - damage);
             OnTakeDamage?.Invoke(damage);
 
-            damageTime = Time.time + damageCooldown;
+            if(damageCooldown > 0)
+                damageTime = Time.time + damageCooldown;
 
             if (m_life <= 0)
             {
