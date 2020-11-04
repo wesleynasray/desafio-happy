@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b8f507655ff3c46a3c87df896a0585, type: 3}
   m_Name: SpreadBullet
   m_EditorClassIdentifier: 
-  icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  powerUpsToOverride: []
+  m_PowerName: Spread Bullet
+  m_Icon: {fileID: 21300000, guid: 24d065f5c7fa7f043a0718258ef7928c, type: 3}
+  m_PowerUpsToOverride: []
   bulletPrefab: {fileID: 5740309259675716837, guid: b3eb63765ecac664e9e83cd7e3431d7e,
     type: 3}
   bulletSetups:

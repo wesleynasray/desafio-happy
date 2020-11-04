@@ -25,8 +25,7 @@ public class Player : MonoBehaviour
 
     #region PowerUps
     [Header("Powers")]
-    [SerializeField] List<PowerUpBase> powerUps = new List<PowerUpBase>();
-    public void AddPowerUp(PowerUpBase powerUp) => powerUps.Add(powerUp);
+    [SerializeField] List<PowerUpBase> powerUps = new List<PowerUpBase>();    
     #endregion
 
     private void Awake()
@@ -85,5 +84,13 @@ public class Player : MonoBehaviour
 
             shootTime = Time.time + cooldown;
         }
-    }    
+    }
+
+    public void AddPowerUp(PowerUpBase powerUp)
+    {
+        foreach (var power in powerUp.PowerUpsToOverride)
+            powerUps.Remove(power);
+
+        powerUps.Add(powerUp);
+    }
 }
