@@ -16,10 +16,12 @@ public class HighScoreModal : MonoBehaviour
 
     private void OnGetScores(Network.ScoreEntry[] scores)
     {
+        int index = 1;
         foreach (var score in scores)
         {
             var entry = Instantiate(entryPrefab, entriesParent);
-            
+
+            entry.Place = index++.ToString() + ".";
             entry.Player = score.name;
             entry.Score = score.score.ToString();
         }

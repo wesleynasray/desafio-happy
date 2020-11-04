@@ -95,10 +95,9 @@ public class Network : MonoBehaviour
             List<ScoreEntry> scores = new List<ScoreEntry>();
             
             foreach (var item in json)
-            {
-                var entry = JsonUtility.FromJson<ScoreEntry>(item.Value);
                 scores.Add(new ScoreEntry { name = item.Value["name"], score = item.Value["score"] });
-            }
+            
+            scores.Sort((x,y) => y.score.CompareTo(x.score));
 
             callback?.Invoke(scores.ToArray());
         }
