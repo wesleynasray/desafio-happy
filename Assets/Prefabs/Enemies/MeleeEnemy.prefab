@@ -144,7 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa1c9970273cd5408e78cdb4eac3d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Life: 1
   speed: 2
 --- !u!114 &7041005354338815207
 MonoBehaviour:
@@ -173,7 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14cf3f45adc02445b71d8c85bb7b65c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 10
   damageableMask:
     serializedVersion: 2
     m_Bits: 256
+  destroyOnHit: 0
