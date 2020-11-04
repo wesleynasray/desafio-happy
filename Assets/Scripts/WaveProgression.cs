@@ -10,6 +10,7 @@ public class WaveProgression : MonoBehaviour
 
     int wave;
 
+    // Formulas
     float StartDelay => 1;
     int TotalSpawns => 8 + wave * 2;
     float SpawnCooldown => Mathf.Max(.1f, .25f - wave * .01f);
