@@ -27,10 +27,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         m_Controller = GetComponent<CharacterController>();
-
-        Damageable damageable;
-        if (TryGetComponent(out damageable))
-            damageable.OnDeath += () => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Update()

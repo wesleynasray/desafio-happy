@@ -15,7 +15,6 @@ public class Score : MonoBehaviour
     private void Awake()
     {
         Amount = 0;
-        Enemy_OnEnemyDamaged(null);
     }
 
     private void Enemy_OnEnemyDamaged(Enemy enemy)
