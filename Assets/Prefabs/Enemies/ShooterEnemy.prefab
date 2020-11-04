@@ -69,6 +69,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   look: {fileID: -7769312337841507192}
+  shooter: {fileID: 3656704925380390294}
+  startDelay: 1
 --- !u!114 &7194650908680909589
 MonoBehaviour:
   m_ObjectHideFlags: 0
