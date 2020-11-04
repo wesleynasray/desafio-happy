@@ -18,8 +18,8 @@ public class PowerUpModal : MonoBehaviour
     }
     private void OnDisable()
     {
-        SpawnArea.OnSpawnFinish += SpawnArea_OnSpawnFinish;
-        PowerUpOption.OnClicked += PowerUpOption_OnClicked;
+        SpawnArea.OnSpawnFinish -= SpawnArea_OnSpawnFinish;
+        PowerUpOption.OnClicked -= PowerUpOption_OnClicked;
     }
     #endregion
 
