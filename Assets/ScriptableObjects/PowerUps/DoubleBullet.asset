@@ -16,6 +16,7 @@ MonoBehaviour:
   m_Icon: {fileID: 21300000, guid: 24d065f5c7fa7f043a0718258ef7928c, type: 3}
   m_PowerUpsToOverride:
   - {fileID: 11400000, guid: 10e3e82938424a1459455ceca5e18fde, type: 2}
+  - {fileID: 11400000}
   defaultBullet: {fileID: 5740309259675716837, guid: b3eb63765ecac664e9e83cd7e3431d7e,
     type: 3}
   bulletSetups:
