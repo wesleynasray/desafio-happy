@@ -605,6 +605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   content: {fileID: 6331765931425146727}
+  nameField: {fileID: 35192020166226258}
   scoreCounter: {fileID: 2731271668975040156}
 --- !u!1 &7277966738517147260
 GameObject:
@@ -839,7 +840,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play Again
+  m_Text: Submit
 --- !u!1 &8916161050176135752
 GameObject:
   m_ObjectHideFlags: 0

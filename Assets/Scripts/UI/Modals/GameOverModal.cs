@@ -9,6 +9,7 @@ public class GameOverModal : MonoBehaviour
     [SerializeField] Damageable player;
     [Space]
     [SerializeField] GameObject content;
+    [SerializeField] InputField nameField;
     [SerializeField] Text scoreCounter;
     
     private void OnEnable() => player.OnDeath += Player_OnDeath;
@@ -22,7 +23,7 @@ public class GameOverModal : MonoBehaviour
 
     public void PlayAgainClicked()
     {
-        // TODO: send highscore
+        Network.PutScore(nameField.text, int.Parse(scoreCounter.text));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
