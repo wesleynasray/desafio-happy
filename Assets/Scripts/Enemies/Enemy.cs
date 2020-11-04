@@ -13,6 +13,10 @@ public class Enemy : MonoBehaviour
     protected virtual void Awake()
     {
         controller = GetComponent<CharacterController>();
+
+        Damageable damageable;
+        if(TryGetComponent(out damageable))
+            damageable.OnTakeDamage += d => OnEnemyDamaged?.Invoke(this);
     }
 
     private void OnEnable() => Enemies.Add(this);
