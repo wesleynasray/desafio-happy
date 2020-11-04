@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour
 {
     #region Movement
     [Header("Movement")]
@@ -12,16 +12,6 @@ public class Player : MonoBehaviour, IDamageable
 
     CharacterController m_Controller;
     Vector3 m_MoveInput;
-    #endregion
-
-    #region Damageable
-    [Header("Damageable")]
-    [SerializeField] int m_Life = 100;
-    [SerializeField] float damageCooldown = 1;
-
-    float damageTime;
-    public event Action<int> OnTakeDamage;
-    public int Life { get => m_Life; set => m_Life = value; }
     #endregion
 
     #region Shooting
@@ -88,17 +78,5 @@ public class Player : MonoBehaviour, IDamageable
             Instantiate(projectile, transform.position, direction);
             shootTime = Time.time + cooldown;
         }
-    }
-
-    public int TakeDamage(int damage)
-    {
-        OnTakeDamage?.Invoke(damage);
-
-        if (Time.time > damageTime)
-        {
-            Life -= damage;
-            damageTime = Time.time + damageCooldown;
-        }
-        return Life;
     }
 }

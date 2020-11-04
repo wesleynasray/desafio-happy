@@ -17,11 +17,10 @@ public class Bullet : MonoBehaviour
     {
         if (collisionMask.Includes(other.gameObject.layer))
         {
-            var damageable = other.GetComponent<IDamageable>();
-            
-            if(damageable != null)
+            Damageable damageable;
+            if(other.TryGetComponent(out damageable))
                 damageable.TakeDamage(damage);
-
+            
             Destroy(gameObject);
         }
     }

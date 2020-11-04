@@ -6,22 +6,18 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] Image fill;
-    [SerializeField] GameObject target;
-    IDamageable damageable;
+    [SerializeField] Damageable target;
 
     int originalLife;
 
     private void Awake()
     {
-        if(target.TryGetComponent(out damageable))
-        {
-            damageable.OnTakeDamage += Damageable_OnTakeDamage;
-            originalLife = damageable.Life;
-        }
+        originalLife = target.Life;
+        target.OnTakeDamage += Target_OnTakeDamage;
     }
 
-    private void Damageable_OnTakeDamage(int damage)
+    private void Target_OnTakeDamage(int damage)
     {
-        fill.fillAmount = (float)damageable.Life / originalLife;
+        fill.fillAmount = (float)target.Life / originalLife;
     }
 }
