@@ -8,7 +8,9 @@ public class Enemy : MonoBehaviour, IDamageable
     public static List<Enemy> Enemies = new List<Enemy>();
     public static event Action<Enemy> OnEnemyDamaged;
 
-    [SerializeField] int life = 1;
+    [SerializeField] int m_Life = 1;
+    public int Life { get => m_Life; set => m_Life = value; }
+    public event Action<int> OnTakeDamage;
 
     protected CharacterController controller;
 
@@ -22,14 +24,14 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public int TakeDamage(int damage)
     {
-        life = Mathf.Max(0, life - damage);
+        m_Life = Mathf.Max(0, m_Life - damage);
 
-        if (life == 0)
+        if (m_Life == 0)
             Destroy(gameObject);
 
         OnEnemyDamaged?.Invoke(this);
 
-        return life;
+        return m_Life;
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)

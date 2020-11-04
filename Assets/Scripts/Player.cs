@@ -6,24 +6,32 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour, IDamageable
 {
+    #region Movement
     [Header("Movement")]
     [SerializeField] float m_MoveSpeed = 5;
-    
+
     CharacterController m_Controller;
     Vector3 m_MoveInput;
-    
+    #endregion
+
+    #region Damageable
     [Header("Damageable")]
-    [SerializeField] int life = 100;
+    [SerializeField] int m_Life = 100;
     [SerializeField] float damageCooldown = 1;
 
     float damageTime;
+    public event Action<int> OnTakeDamage;
+    public int Life { get => m_Life; set => m_Life = value; }
+    #endregion
 
+    #region Shooting
     [Header("Shooting")]
     [SerializeField] GameObject projectile;
     [SerializeField] float cooldown;
     
     Transform target;
     float shootTime;
+    #endregion
 
     private void Awake()
     {
@@ -37,6 +45,13 @@ public class Player : MonoBehaviour, IDamageable
         
         if(m_MoveInput.sqrMagnitude == 0)
             Shoot();
+    }
+
+    private void OnMove(InputValue value)
+    {
+        Vector2 vector = value.Get<Vector2>();
+        m_MoveInput.x = vector.x;
+        m_MoveInput.z = vector.y;
     }
 
     private void Move()
@@ -75,20 +90,15 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-    private void OnMove(InputValue value)
-    {
-        Vector2 vector = value.Get<Vector2>();
-        m_MoveInput.x = vector.x;
-        m_MoveInput.z = vector.y;
-    }
-
     public int TakeDamage(int damage)
     {
+        OnTakeDamage?.Invoke(damage);
+
         if (Time.time > damageTime)
         {
-            life -= damage;
+            Life -= damage;
             damageTime = Time.time + damageCooldown;
         }
-        return life;
+        return Life;
     }
 }
