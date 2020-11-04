@@ -17,29 +17,19 @@ public class WaveProgression : MonoBehaviour
     int BurstLimit => Mathf.CeilToInt((float)TotalSpawns / 3);
 
     #region Event Setup
-    private void OnEnable()
-    {
-        SpawnArea.OnSpawnFinish += SpawnArea_OnSpawnFinish;
-    }
-
-    private void OnDisable()
-    {
-        SpawnArea.OnSpawnFinish -= SpawnArea_OnSpawnFinish;
-    }
+    private void OnEnable() => PowerUpOption.OnClicked += PowerUpOption_OnClicked;
+    private void OnDisable() => PowerUpOption.OnClicked -= PowerUpOption_OnClicked;
     #endregion
 
     private void Start()
     {
-        SpawnArea_OnSpawnFinish(spawnArea);
+        PowerUpOption_OnClicked(null);
     }
 
-    private void SpawnArea_OnSpawnFinish(SpawnArea spawnArea)
+    private void PowerUpOption_OnClicked(PowerUpOption powerUpOption)
     {
-        if(spawnArea == this.spawnArea)
-        {
-            wave++;
-            waveCounter.text = string.Format("Wave {0}", wave);
-            spawnArea.StartSpawn(StartDelay, TotalSpawns, SpawnCooldown, BurstLimit);
-        }
+        wave++;
+        waveCounter.text = string.Format("Wave {0}", wave);
+        spawnArea.StartSpawn(StartDelay, TotalSpawns, SpawnCooldown, BurstLimit);
     }
 }

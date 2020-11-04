@@ -17,11 +17,15 @@ public class Player : MonoBehaviour
 
     #region Shooting
     [Header("Shooting")]
-    [SerializeField] GameObject projectile;
     [SerializeField] float cooldown;
     
     Transform target;
     float shootTime;
+    #endregion
+
+    #region PowerUps
+    [Header("Powers")]
+    [SerializeField] List<PowerUpBase> powerUps = new List<PowerUpBase>();    
     #endregion
 
     private void Awake()
@@ -31,10 +35,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Move();
         TargetClosestEnemy();
-        
-        if(m_MoveInput.sqrMagnitude == 0)
+     
+        if(m_MoveInput.sqrMagnitude != 0)
+            Move();
+        else
             Shoot();
     }
 
@@ -48,6 +53,7 @@ public class Player : MonoBehaviour
     private void Move()
     {
         m_Controller.Move(m_MoveInput.normalized * m_MoveSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.LookRotation(m_MoveInput.normalized);
     }
 
     private void TargetClosestEnemy()
@@ -75,9 +81,20 @@ public class Player : MonoBehaviour
 
         if(Time.time > shootTime)
         {
-            var direction = Quaternion.LookRotation(target.position - transform.position);
-            Instantiate(projectile, transform.position, direction);
+            transform.LookAt(target);
+
+            foreach (var power in powerUps)
+                power.Action(gameObject);
+
             shootTime = Time.time + cooldown;
         }
+    }
+
+    public void AddPowerUp(PowerUpBase powerUp)
+    {
+        foreach (var power in powerUp.PowerUpsToOverride)
+            powerUps.Remove(power);
+
+        powerUps.Add(powerUp);
     }
 }
