@@ -11,7 +11,7 @@ public class SpawnArea : MonoBehaviour
     public static event Action<SpawnArea> OnSpawnFinish;
 
     [SerializeField] Vector3 extent = Vector3.one * 5;
-    [SerializeField] GameObject toSpawn;
+    [SerializeField] GameObject[] toSpawn;
     [SerializeField] float startDelay;
     [SerializeField] int totalSpawns;
     [SerializeField] float spawnCooldown;
@@ -51,7 +51,9 @@ public class SpawnArea : MonoBehaviour
         // Spawning process
         for(int spawns = 0; spawns < totalSpawns; spawns++)
         {
-            var spawned = Instantiate(toSpawn, transform);
+            var random = toSpawn[Random.Range(0, toSpawn.Length)];
+            
+            var spawned = Instantiate(random, transform);
             spawned.transform.position = new Vector3
             {
                 x = transform.position.x + Random.Range(-extent.x, extent.x) * .5f,
