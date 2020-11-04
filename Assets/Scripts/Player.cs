@@ -3,25 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    #region Movement
     [Header("Movement")]
     [SerializeField] float m_MoveSpeed = 5;
-    
-    [Header("Shooting")]
-    [SerializeField] GameObject projectile;
-    [SerializeField] float cooldown;
 
     CharacterController m_Controller;
     Vector3 m_MoveInput;
+    #endregion
 
+    #region Shooting
+    [Header("Shooting")]
+    [SerializeField] GameObject projectile;
+    [SerializeField] float cooldown;
+    
     Transform target;
     float shootTime;
+    #endregion
 
     private void Awake()
     {
         m_Controller = GetComponent<CharacterController>();
+
+        Damageable damageable;
+        if (TryGetComponent(out damageable))
+            damageable.OnDeath += () => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Update()
@@ -31,6 +40,13 @@ public class Player : MonoBehaviour
         
         if(m_MoveInput.sqrMagnitude == 0)
             Shoot();
+    }
+
+    private void OnMove(InputValue value)
+    {
+        Vector2 vector = value.Get<Vector2>();
+        m_MoveInput.x = vector.x;
+        m_MoveInput.z = vector.y;
     }
 
     private void Move()
@@ -67,12 +83,5 @@ public class Player : MonoBehaviour
             Instantiate(projectile, transform.position, direction);
             shootTime = Time.time + cooldown;
         }
-    }
-
-    private void OnMove(InputValue value)
-    {
-        Vector2 vector = value.Get<Vector2>();
-        m_MoveInput.x = vector.x;
-        m_MoveInput.z = vector.y;
     }
 }

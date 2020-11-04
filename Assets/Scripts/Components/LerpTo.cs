@@ -12,6 +12,9 @@ public class LerpTo : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (target == null)
+            return;
+
         var position = Vector3.Lerp(transform.position, target.position + offset, speed * Time.deltaTime);
         
         transform.position = new Vector3 {
